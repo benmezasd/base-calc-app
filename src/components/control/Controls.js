@@ -9,13 +9,13 @@ export default class Controls extends Component {
     return (
       <div>
         <BaseNumberControls handleBaseClick={this.props.handleBaseClick}/>
-        <ClearControls functions={['AC','C','DEL']} btnStyle="btn-outline-danger" handleKeyClick={this.props.handleKeyClick}/>
-        <NumberControls labels={['D','E','F']} handleKeyClick={this.props.handleKeyClick}/>
-        <NumberControls labels={['A','B','C']} handleKeyClick={this.props.handleKeyClick}/>
-        <NumberControls labels={['7','8','9']} handleKeyClick={this.props.handleKeyClick}/>
-        <NumberControls labels={['4','5','6']} handleKeyClick={this.props.handleKeyClick}/>
-        <NumberControls labels={['1','2','3']} handleKeyClick={this.props.handleKeyClick}/>
-        <NumberControls labels={['0','.']} handleKeyClick={this.props.handleKeyClick}/>
+        <ClearControls functions={['AC','C','DEL']} btnStyle="btn-outline-danger"/>
+        <NumberControls labels={['D','E','F']}/>
+        <NumberControls labels={['A','B','C']}/>
+        <NumberControls labels={['7','8','9']}/>
+        <NumberControls labels={['4','5','6']}/>
+        <NumberControls labels={['1','2','3']}/>
+        <NumberControls labels={['0','.']}/>
       </div>
     );
   }

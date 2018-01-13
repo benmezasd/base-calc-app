@@ -1,28 +1,9 @@
 import React, { Component } from 'react';
-import anyBase from 'any-base';
+import { connect } from "react-redux";
 
 import MainDisplay from './MainDisplay';
 
-export default class Display extends Component {
-
-	convertBase(mainNum,baseNum) {
-		let str = mainNum.toString();
-		let conversion;
-		switch (baseNum) {
-			case 2:
-				conversion = anyBase(anyBase.DEC, anyBase.BIN);
-				break;
-			case 8:
-				conversion = anyBase(anyBase.DEC, anyBase.OCT);
-				break;
-			case 16:
-				conversion = anyBase(anyBase.DEC, anyBase.HEX);	
-				break;
-			default:
-				return str;
-		}
-		return conversion(str);
-	}
+class Display extends Component {
 
 	render() {
 		return (
@@ -30,16 +11,25 @@ export default class Display extends Component {
 				{[2,8,10,16].map(base => 
 					<div key={`dispcont${base}`} className="display-container information-row">
 						<div key={`basename${base}`} className="display-item text-left">{`base${base}`}</div>
-						<MainDisplay key={`maindisp${base}`} display={this.convertBase(this.props.mainNum,base)}></MainDisplay>
+						<MainDisplay key={`maindisp${base}`} display={this.props.value.toString(base)}></MainDisplay>
 						<div key={`noidea${base}`} className="display-item">{base}</div>
 					</div>
 				)}
 				<div className="display-container base-row">
-					<div className="display-item">{this.props.mainBase}</div>
-					<MainDisplay display={this.props.mainNum}></MainDisplay>
+					<div className="display-item">{this.props.base}</div>
+					<MainDisplay display={this.props.value.toString(this.props.base)}></MainDisplay>
 					<div className="display-item">0</div>
 				</div>
 			</div>
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		value: state.value,
+		base: state.base
+	};
+}
+
+export default connect(mapStateToProps)(Display);
